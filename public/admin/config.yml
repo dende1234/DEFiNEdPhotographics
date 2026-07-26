@@ -31,20 +31,28 @@ collections:
       - file: "src/content/pricing/nl/packages.md"
         name: "packages"
         label: "Pakketten NL"
+        media_folder: ""
         fields:
           - { label: "Intro tekst", name: "intro", widget: "text", required: false }
-          - label: "Pakketten"
-            name: "packages"
+          - label: "Hoofdcategorieën"
+            name: "categories"
             widget: "list"
             fields:
               - { label: "Naam", name: "name", widget: "string" }
-              - { label: "Prijs", name: "price", widget: "string" }
-              - { label: "Beschrijving", name: "description", widget: "text" }
-              - label: "Kenmerken"
-                name: "features"
+              - { label: "Foto", name: "image", widget: "image", required: false }
+              - label: "Pakketten"
+                name: "packages"
                 widget: "list"
-                field: { label: "Item", name: "item", widget: "string" }
-              - { label: "Uitgelicht", name: "highlighted", widget: "boolean", default: false }
+                fields:
+                  - { label: "Naam", name: "name", widget: "string" }
+                  - { label: "Prijs", name: "price", widget: "string" }
+                  - { label: "Beschrijving", name: "description", widget: "text" }
+                  - label: "Kenmerken"
+                    name: "features"
+                    widget: "list"
+                    field: { label: "Item", name: "item", widget: "string" }
+                  - { label: "Uitgelicht", name: "highlighted", widget: "boolean", default: false }
+          - { label: "Extra tekst onderaan", name: "outro", widget: "text", required: false }
 
   - name: "pricing_en"
     label: "Pricing (EN)"
@@ -52,20 +60,28 @@ collections:
       - file: "src/content/pricing/en/packages.md"
         name: "packages"
         label: "Packages EN"
+        media_folder: ""
         fields:
           - { label: "Intro text", name: "intro", widget: "text", required: false }
-          - label: "Packages"
-            name: "packages"
+          - label: "Main categories"
+            name: "categories"
             widget: "list"
             fields:
               - { label: "Name", name: "name", widget: "string" }
-              - { label: "Price", name: "price", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - label: "Features"
-                name: "features"
+              - { label: "Photo", name: "image", widget: "image", required: false }
+              - label: "Packages"
+                name: "packages"
                 widget: "list"
-                field: { label: "Item", name: "item", widget: "string" }
-              - { label: "Highlighted", name: "highlighted", widget: "boolean", default: false }
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Price", name: "price", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - label: "Features"
+                    name: "features"
+                    widget: "list"
+                    field: { label: "Item", name: "item", widget: "string" }
+                  - { label: "Highlighted", name: "highlighted", widget: "boolean", default: false }
+          - { label: "Extra text at the bottom", name: "outro", widget: "text", required: false }
 
   - name: "homepage_nl"
     label: "Homepage tekst (NL)"

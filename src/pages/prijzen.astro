@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingCard from '../components/PricingCard.astro';
 import { useTranslations } from '../i18n/utils';
@@ -18,8 +19,31 @@ const pricing = await getEntry('pricing', 'nl/packages');
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
     <h1 class="font-heading text-4xl text-primary mb-4">{t('nav.pricing')}</h1>
     {pricing?.data.intro && <p class="text-secondary max-w-2xl mb-10">{pricing.data.intro}</p>}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {pricing?.data.packages.map((pkg) => <PricingCard pkg={pkg} />)}
+
+    <div class="space-y-16">
+      {
+        pricing?.data.categories.map((category) => (
+          <section>
+            {category.image && (
+              <Image
+                src={category.image}
+                alt={category.name}
+                widths={[400, 800, 1200]}
+                sizes="100vw"
+                class="mb-6 h-56 w-full rounded-2xl object-cover sm:h-72"
+              />
+            )}
+            <h2 class="font-heading text-3xl text-primary mb-6">{category.name}</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {category.packages.map((pkg) => (
+                <PricingCard pkg={pkg} />
+              ))}
+            </div>
+          </section>
+        ))
+      }
     </div>
+
+    {pricing?.data.outro && <p class="mt-16 text-secondary max-w-2xl">{pricing.data.outro}</p>}
   </div>
 </BaseLayout>

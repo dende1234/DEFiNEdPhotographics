@@ -15,18 +15,26 @@ const gallery = defineCollection({
 
 const pricing = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pricing' }),
-  schema: z.object({
-    intro: z.string().optional(),
-    packages: z.array(
-      z.object({
-        name: z.string(),
-        price: z.string(),
-        description: z.string(),
-        features: z.array(z.string()).default([]),
-        highlighted: z.boolean().default(false)
-      })
-    )
-  })
+  schema: ({ image }) =>
+    z.object({
+      intro: z.string().optional(),
+      outro: z.string().optional(),
+      categories: z.array(
+        z.object({
+          name: z.string(),
+          image: image().optional(),
+          packages: z.array(
+            z.object({
+              name: z.string(),
+              price: z.string(),
+              description: z.string(),
+              features: z.array(z.string()).default([]),
+              highlighted: z.boolean().default(false)
+            })
+          )
+        })
+      )
+    })
 });
 
 const homepage = defineCollection({
