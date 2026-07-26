@@ -1,0 +1,61 @@
+---
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  otherPath: string;
+}
+
+const { lang, otherPath } = Astro.props;
+const t = useTranslations(lang);
+const r = routes[lang];
+---
+
+<header class="sticky top-0 z-50 bg-bg/90 backdrop-blur border-b border-bg-muted">
+  <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+    <a href={r.home} class="flex items-center gap-2 shrink-0" aria-label={t('nav.home')}>
+      <img
+        src="/logo-placeholder.svg"
+        alt="DEFiNEd Photographics logo"
+        class="h-10 w-auto"
+      />
+    </a>
+
+    <button
+      id="nav-toggle"
+      type="button"
+      class="sm:hidden inline-flex items-center justify-center p-2 text-primary"
+      aria-expanded="false"
+      aria-controls="nav-links"
+      aria-label="Menu"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <div
+      id="nav-links"
+      class="hidden sm:flex sm:items-center sm:gap-8 absolute sm:static top-20 left-0 right-0 bg-bg sm:bg-transparent flex-col sm:flex-row px-4 sm:px-0 py-4 sm:py-0 border-b sm:border-0 border-bg-muted"
+    >
+      <a href={r.home} class="py-2 sm:py-0 text-text hover:text-accent transition-colors">{t('nav.home')}</a>
+      <a href={r.portfolio} class="py-2 sm:py-0 text-text hover:text-accent transition-colors">{t('nav.portfolio')}</a>
+      <a href={r.pricing} class="py-2 sm:py-0 text-text hover:text-accent transition-colors">{t('nav.pricing')}</a>
+      <a href={r.contact} class="py-2 sm:py-0 text-text hover:text-accent transition-colors">{t('nav.contact')}</a>
+      <LanguageSwitcher lang={lang} otherPath={otherPath} />
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const links = document.getElementById('nav-links');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = links?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

@@ -1,0 +1,38 @@
+---
+interface Package {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  highlighted: boolean;
+}
+
+interface Props {
+  pkg: Package;
+}
+
+const { pkg } = Astro.props;
+---
+
+<div
+  class:list={[
+    'rounded-2xl border p-8 flex flex-col',
+    pkg.highlighted ? 'border-accent bg-bg-muted shadow-lg' : 'border-secondary/30 bg-bg'
+  ]}
+>
+  <h3 class="font-heading text-2xl text-primary">{pkg.name}</h3>
+  <p class="mt-1 text-accent font-medium">{pkg.price}</p>
+  <p class="mt-4 text-text/90">{pkg.description}</p>
+  {
+    pkg.features.length > 0 && (
+      <ul class="mt-6 space-y-2 text-sm text-secondary">
+        {pkg.features.map((feature) => (
+          <li class="flex items-start gap-2">
+            <span class="text-accent">✓</span>
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</div>

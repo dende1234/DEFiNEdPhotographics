@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+
+const t = useTranslations('nl');
+---
+
+<BaseLayout
+  lang="nl"
+  otherPath={routes.en.home}
+  title="404 — DEFiNEd Photographics"
+  description={t('404.title')}
+>
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-32 text-center">
+    <h1 class="font-heading text-4xl text-primary">{t('404.title')}</h1>
+    <p class="mt-4 text-secondary">{t('404.body')}</p>
+    <a href={routes.nl.home} class="mt-8 inline-block text-accent hover:underline">
+      {t('404.back')}
+    </a>
+  </div>
+</BaseLayout>

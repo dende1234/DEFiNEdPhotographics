@@ -1,0 +1,20 @@
+---
+import { languages } from '../i18n/ui';
+import { otherLang } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  otherPath: string;
+}
+
+const { lang, otherPath } = Astro.props;
+const target = otherLang(lang);
+---
+
+<a
+  href={otherPath}
+  class="text-sm font-medium text-secondary hover:text-primary transition-colors"
+>
+  {languages[target]}
+</a>

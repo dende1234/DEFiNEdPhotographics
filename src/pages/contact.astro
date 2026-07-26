@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+
+const t = useTranslations('nl');
+---
+
+<BaseLayout
+  lang="nl"
+  otherPath={routes.en.contact}
+  title="Contact — DEFiNEd Photographics"
+  description="Neem contact op met DEFiNEd Photographics voor een aanvraag of vraag."
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="font-heading text-4xl text-primary mb-8">{t('nav.contact')}</h1>
+    <ContactForm lang="nl" successPath={routes.nl.contactSuccess} />
+  </div>
+</BaseLayout>

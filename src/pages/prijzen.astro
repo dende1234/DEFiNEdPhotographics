@@ -1,0 +1,25 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingCard from '../components/PricingCard.astro';
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+
+const t = useTranslations('nl');
+const pricing = await getEntry('pricing', 'nl/packages');
+---
+
+<BaseLayout
+  lang="nl"
+  otherPath={routes.en.pricing}
+  title="Prijzen — DEFiNEd Photographics"
+  description="Bekijk de prijspakketten van DEFiNEd Photographics."
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="font-heading text-4xl text-primary mb-4">{t('nav.pricing')}</h1>
+    {pricing?.data.intro && <p class="text-secondary max-w-2xl mb-10">{pricing.data.intro}</p>}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {pricing?.data.packages.map((pkg) => <PricingCard pkg={pkg} />)}
+    </div>
+  </div>
+</BaseLayout>

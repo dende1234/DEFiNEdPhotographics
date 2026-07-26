@@ -1,0 +1,78 @@
+---
+import { useTranslations } from '../i18n/utils';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  successPath: string;
+}
+
+const { lang, successPath } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action={successPath}
+  class="max-w-xl space-y-6"
+>
+  <input type="hidden" name="form-name" value="contact" />
+  <p class="hidden">
+    <label>
+      Don't fill this out: <input name="bot-field" />
+    </label>
+  </p>
+
+  <div>
+    <label for="name" class="block text-sm font-medium text-text">{t('contact.name')}</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      class="mt-1 block w-full rounded-md border border-secondary/40 bg-bg px-3 py-2 text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    />
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-text">{t('contact.email')}</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      class="mt-1 block w-full rounded-md border border-secondary/40 bg-bg px-3 py-2 text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    />
+  </div>
+
+  <div>
+    <label for="phone" class="block text-sm font-medium text-text">{t('contact.phone')}</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      class="mt-1 block w-full rounded-md border border-secondary/40 bg-bg px-3 py-2 text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    />
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-text">{t('contact.message')}</label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="mt-1 block w-full rounded-md border border-secondary/40 bg-bg px-3 py-2 text-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="rounded-full bg-primary text-bg px-8 py-3 text-sm font-medium hover:bg-accent transition-colors"
+  >
+    {t('contact.submit')}
+  </button>
+</form>

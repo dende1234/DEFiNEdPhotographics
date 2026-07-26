@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryGrid from '../components/GalleryGrid.astro';
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+
+const t = useTranslations('nl');
+---
+
+<BaseLayout
+  lang="nl"
+  otherPath={routes.en.portfolio}
+  title="Portfolio — DEFiNEd Photographics"
+  description="Een overzicht van foto's van DEFiNEd Photographics."
+>
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+    <h1 class="font-heading text-4xl text-primary mb-8">{t('nav.portfolio')}</h1>
+    <GalleryGrid lang="nl" />
+  </div>
+</BaseLayout>

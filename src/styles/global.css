@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/*
+  Placeholder design tokens.
+  Swap the values in this @theme block once the client's logo and brand
+  colors arrive — no component files need to change.
+*/
+@theme {
+  --color-primary: #2d2d2a;
+  --color-secondary: #a89f91;
+  --color-accent: #b08d57;
+  --color-bg: #ffffff;
+  --color-bg-muted: #f7f6f4;
+  --color-text: #1f1f1d;
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+}

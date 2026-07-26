@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { useTranslations } from '../../i18n/utils';
+import { routes } from '../../i18n/routes';
+
+const t = useTranslations('nl');
+---
+
+<BaseLayout
+  lang="nl"
+  otherPath={routes.en.contactSuccess}
+  title="Bericht verzonden — DEFiNEd Photographics"
+  description={t('contact.success.title')}
+>
+  <div class="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 py-32 text-center">
+    <h1 class="font-heading text-4xl text-primary">{t('contact.success.title')}</h1>
+    <p class="mt-4 text-secondary">{t('contact.success.body')}</p>
+    <a href={routes.nl.home} class="mt-8 inline-block text-accent hover:underline">
+      {t('contact.success.back')}
+    </a>
+  </div>
+</BaseLayout>

@@ -1,0 +1,139 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables local testing with `npx decap-server` — Decap auto-detects this
+# and swaps to the local backend instead of git-gateway when it's running.
+local_backend: true
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "gallery"
+    label: "Portfolio foto's"
+    folder: "src/content/gallery"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    media_folder: ""
+    public_folder: ""
+    fields:
+      - { label: "Foto", name: "image", widget: "image" }
+      - { label: "Alt-tekst (verplicht, voor toegankelijkheid)", name: "alt", widget: "string" }
+      - { label: "Onderschrift", name: "caption", widget: "string", required: false }
+      - { label: "Volgorde", name: "order", widget: "number", default: 0, value_type: "int" }
+      - { label: "Uitgelicht", name: "featured", widget: "boolean", default: false }
+
+  - name: "pricing_nl"
+    label: "Prijslijst (NL)"
+    files:
+      - file: "src/content/pricing/nl/packages.md"
+        name: "packages"
+        label: "Pakketten NL"
+        fields:
+          - { label: "Intro tekst", name: "intro", widget: "text", required: false }
+          - label: "Pakketten"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "Naam", name: "name", widget: "string" }
+              - { label: "Prijs", name: "price", widget: "string" }
+              - { label: "Beschrijving", name: "description", widget: "text" }
+              - label: "Kenmerken"
+                name: "features"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - { label: "Uitgelicht", name: "highlighted", widget: "boolean", default: false }
+
+  - name: "pricing_en"
+    label: "Pricing (EN)"
+    files:
+      - file: "src/content/pricing/en/packages.md"
+        name: "packages"
+        label: "Packages EN"
+        fields:
+          - { label: "Intro text", name: "intro", widget: "text", required: false }
+          - label: "Packages"
+            name: "packages"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Price", name: "price", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - { label: "Highlighted", name: "highlighted", widget: "boolean", default: false }
+
+  - name: "homepage_nl"
+    label: "Homepage tekst (NL)"
+    files:
+      - file: "src/content/homepage/nl/index.md"
+        name: "homepage"
+        label: "Homepage"
+        media_folder: ""
+        fields:
+          - { label: "Hero titel", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtitel", name: "heroSubtitle", widget: "text" }
+          - { label: "Hero afbeelding", name: "heroImage", widget: "image", required: false }
+          - { label: "Over mij - titel", name: "aboutTitle", widget: "string" }
+          - { label: "Over mij - tekst", name: "aboutBody", widget: "text" }
+          - { label: "Werkwijze - titel", name: "werkwijzeTitle", widget: "string" }
+          - { label: "Werkwijze - tekst", name: "werkwijzeBody", widget: "text" }
+          - { label: "Call-to-action tekst", name: "ctaLabel", widget: "string" }
+
+  - name: "homepage_en"
+    label: "Homepage text (EN)"
+    files:
+      - file: "src/content/homepage/en/index.md"
+        name: "homepage"
+        label: "Homepage"
+        media_folder: ""
+        fields:
+          - { label: "Hero title", name: "heroTitle", widget: "string" }
+          - { label: "Hero subtitle", name: "heroSubtitle", widget: "text" }
+          - { label: "Hero image", name: "heroImage", widget: "image", required: false }
+          - { label: "About - title", name: "aboutTitle", widget: "string" }
+          - { label: "About - text", name: "aboutBody", widget: "text" }
+          - { label: "How I work - title", name: "werkwijzeTitle", widget: "string" }
+          - { label: "How I work - text", name: "werkwijzeBody", widget: "text" }
+          - { label: "Call-to-action text", name: "ctaLabel", widget: "string" }
+
+  - name: "site_settings"
+    label: "Bedrijfsgegevens & socials"
+    files:
+      - file: "src/content/site/nl/site.md"
+        name: "site"
+        label: "Instellingen"
+        fields:
+          - { label: "Bedrijfsnaam", name: "businessName", widget: "string" }
+          - { label: "KVK nummer", name: "kvkNumber", widget: "string" }
+          - { label: "BTW nummer", name: "btwNumber", widget: "string", required: false }
+          - { label: "Adres", name: "address", widget: "string" }
+          - { label: "Vestigingsplaats", name: "city", widget: "string" }
+          - { label: "E-mailadres", name: "email", widget: "string" }
+          - { label: "Telefoonnummer", name: "phone", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagramUrl", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebookUrl", widget: "string", required: false }
+
+  - name: "legal_nl"
+    label: "Juridische pagina's (NL)"
+    folder: "src/content/legal/nl"
+    create: false
+    delete: false
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Laatst bijgewerkt", name: "lastUpdated", widget: "datetime" }
+      - { label: "Inhoud", name: "body", widget: "markdown" }
+
+  - name: "legal_en"
+    label: "Legal pages (EN)"
+    folder: "src/content/legal/en"
+    create: false
+    delete: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Last updated", name: "lastUpdated", widget: "datetime" }
+      - { label: "Content", name: "body", widget: "markdown" }

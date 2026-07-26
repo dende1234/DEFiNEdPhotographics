@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { routes } from '../../i18n/routes';
+
+const entry = await getEntry('legal', 'en/terms');
+const { Content } = await render(entry!);
+---
+
+<BaseLayout
+  lang="en"
+  otherPath={routes.nl.terms}
+  title={`${entry!.data.title} — DEFiNEd Photographics`}
+  description={entry!.data.title}
+>
+  <article class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-16 prose">
+    <h1 class="font-heading text-4xl text-primary">{entry!.data.title}</h1>
+    <p class="text-sm text-secondary">Last updated: {entry!.data.lastUpdated.toLocaleDateString('en-GB')}</p>
+    <div class="mt-6 text-text/90 leading-relaxed">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

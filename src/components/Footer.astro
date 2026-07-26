@@ -1,0 +1,57 @@
+---
+import { getEntry } from 'astro:content';
+import { useTranslations } from '../i18n/utils';
+import { routes } from '../i18n/routes';
+import type { Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const r = routes[lang];
+const site = await getEntry('site', 'nl/site');
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary text-bg mt-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 grid gap-8 sm:grid-cols-3">
+    <div>
+      <p class="font-heading text-lg">{site?.data.businessName}</p>
+      <p class="mt-2 text-sm text-secondary">{site?.data.address}</p>
+      <p class="text-sm text-secondary">{site?.data.city}</p>
+      <p class="mt-2 text-sm text-secondary">{site?.data.email}</p>
+      {site?.data.phone && <p class="text-sm text-secondary">{site.data.phone}</p>}
+    </div>
+
+    <div>
+      <p class="font-heading text-lg">{t('footer.follow')}</p>
+      <div class="mt-2 flex flex-col gap-1 text-sm text-secondary">
+        {site?.data.instagramUrl && (
+          <a href={site.data.instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-bg transition-colors">
+            Instagram
+          </a>
+        )}
+        {site?.data.facebookUrl && (
+          <a href={site.data.facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-bg transition-colors">
+            Facebook
+          </a>
+        )}
+      </div>
+    </div>
+
+    <div class="text-sm text-secondary">
+      <p>KVK: {site?.data.kvkNumber}</p>
+      {site?.data.btwNumber && <p>BTW: {site.data.btwNumber}</p>}
+      <div class="mt-2 flex flex-col gap-1">
+        <a href={r.privacy} class="hover:text-bg transition-colors">{t('footer.legal.privacy')}</a>
+        <a href={r.terms} class="hover:text-bg transition-colors">{t('footer.legal.terms')}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-secondary/30 py-4 text-center text-xs text-secondary">
+    &copy; {year} {site?.data.businessName}. {t('footer.rights')}
+  </div>
+</footer>

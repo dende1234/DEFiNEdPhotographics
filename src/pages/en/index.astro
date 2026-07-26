@@ -1,0 +1,26 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import AboutSection from '../../components/AboutSection.astro';
+import { routes } from '../../i18n/routes';
+
+const home = await getEntry('homepage', 'en');
+const r = routes.en;
+---
+
+<BaseLayout
+  lang="en"
+  otherPath={routes.nl.home}
+  title="DEFiNEd Photographics — Photography"
+  description={home!.data.heroSubtitle}
+>
+  <Hero
+    title={home!.data.heroTitle}
+    subtitle={home!.data.heroSubtitle}
+    ctaLabel={home!.data.ctaLabel}
+    ctaHref={r.contact}
+  />
+  <AboutSection title={home!.data.aboutTitle} body={home!.data.aboutBody} />
+  <AboutSection title={home!.data.werkwijzeTitle} body={home!.data.werkwijzeBody} muted />
+</BaseLayout>
