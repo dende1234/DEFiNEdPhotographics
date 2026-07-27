@@ -147,6 +147,7 @@ categories:
           - +/- 150 digitalen
           - Online galerij
           - 4-8 weken
+        description: Pre shoot is inbegrepen om eens kennis te maken.
       - highlighted: false
         name: Gaia
         price: "775"
@@ -155,6 +156,7 @@ categories:
           - +/- 300 digitalen
           - Online galerij
           - 4-8 weken
+        description: Pre shoot is inbegrepen om eens kennis te maken.
       - highlighted: false
         name: Hemera
         price: "1025"
@@ -163,5 +165,6 @@ categories:
           - Alle digitalen
           - Online digitalen
           - 4-8 weken
+        description: Pre shoot is inbegrepen om eens kennis te maken.
 outro: ""
 ---
